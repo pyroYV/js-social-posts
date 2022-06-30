@@ -167,14 +167,29 @@ posts.forEach(element => {
         </div>`
     container.append(newPost)
 
-    // prendo il bottone e controllo se islike==true
+    // prendo il bottone dei like e controllo se islike==true
     let liked = document.querySelector(`.js-like-button${id}`)
-    console.log(liked)
     if(is_liked){
-        liked.classList.add('piace')
+        liked.classList.add('like-button--liked')
     }
-    
+    // aggiungo l'evento al click
+    liked.addEventListener('click',function(){
+        if(!element.is_liked){
+            liked.classList.add('like-button--liked')
+            element.is_liked = true
+        }else{
+            liked.classList.remove('like-button--liked')
+            element.is_liked = false
+        }
+    })
+
 });
 
-// prendo il bottone
 
+/* function likedOrNot (is_liked){
+    if(!is_liked){
+        liked.classList.add('piace')
+    }else{
+        liked.classList.remove('piace')
+    }
+} */
