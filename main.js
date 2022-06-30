@@ -130,7 +130,7 @@ const posts = [
 
 // prendo l'elemento della pagina
 const container = document.getElementById('container')
-
+// per ogni elemento dell'array creo un post con i dati dell'oggetto
 posts.forEach(element => {
     const {id,content,media,author,likes,is_liked,created} = element
     let newPost = document.createElement('div')
@@ -154,7 +154,7 @@ posts.forEach(element => {
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <a class="like-button  js-like-button${id}" href="javascript:;" data-postid="1">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
@@ -166,4 +166,15 @@ posts.forEach(element => {
             </div>
         </div>`
     container.append(newPost)
+
+    // prendo il bottone e controllo se islike==true
+    let liked = document.querySelector(`.js-like-button${id}`)
+    console.log(liked)
+    if(is_liked){
+        liked.classList.add('piace')
+    }
+    
 });
+
+// prendo il bottone
+
