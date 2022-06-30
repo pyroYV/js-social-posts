@@ -105,7 +105,7 @@ const posts = [
 //     id del post, numero progressivo da 1 a n
 //     nome autore,
 //     foto autore,
-//     data in formato americano (mm-gg-yyyy),
+//     data in formato americano (yyyy-mm-gg),
 //     testo del post,
 //     immagine (non tutti i post devono avere una immagine),
 //     numero di likes.
@@ -144,7 +144,7 @@ posts.forEach(element => {
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${author.name}</div>
-                        <div class="post-meta__time">${created}</div>
+                        <div class="post-meta__time">${changeDate(created)}</div>
                     </div>
                 </div>
             </div>
@@ -182,15 +182,18 @@ posts.forEach(element => {
             element.is_liked = true
             newLike++
             likeCounter.innerHTML = newLike
-
         }else{
             liked.classList.remove('like-button--liked')
             element.is_liked = false
             newLike--    
             likeCounter.innerHTML = newLike
-
         }
     })
-
+    
 });
+
+function changeDate (data){
+    return data.split('-').reverse().join('/')
+}
+
 
