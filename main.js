@@ -134,6 +134,7 @@ const container = document.getElementById('container')
 posts.forEach(element => {
     const {id,content,media,author,likes,is_liked,created} = element
     let newPost = document.createElement('div')
+    let newLike = likes
     newPost.innerHTML = `
         <div class="post">
             <div class="post__header">
@@ -160,7 +161,7 @@ posts.forEach(element => {
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="${id}" class="js-likes-counter">${likes}</b> persone
+                        Piace a <b id="${id}" class="js-likes-counter">${newLike}</b> persone
                     </div>
                 </div>
             </div>
@@ -172,24 +173,24 @@ posts.forEach(element => {
     if(is_liked){
         liked.classList.add('like-button--liked')
     }
+    // prendo il counter dei like
+    let likeCounter = document.getElementById(`${id}`)
     // aggiungo l'evento al click
     liked.addEventListener('click',function(){
         if(!element.is_liked){
             liked.classList.add('like-button--liked')
             element.is_liked = true
+            newLike++
+            likeCounter.innerHTML = newLike
+
         }else{
             liked.classList.remove('like-button--liked')
             element.is_liked = false
+            newLike--    
+            likeCounter.innerHTML = newLike
+
         }
     })
 
 });
 
-
-/* function likedOrNot (is_liked){
-    if(!is_liked){
-        liked.classList.add('piace')
-    }else{
-        liked.classList.remove('piace')
-    }
-} */
